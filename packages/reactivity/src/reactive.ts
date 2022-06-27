@@ -1,10 +1,9 @@
 import { isObject } from "@vue/shared";
+import { mutableHandlers, ReactiveFlags } from './baseHandlers'
 
 // 将数据转换成响应式数据
 const reactiveMap = new WeakMap(); // 弱引用，不会导致内存泄露，有利于性能
-const enum ReactiveFlags {
-  IS_REACTIVE = '__v_isReactive'
-}
+
 
 export function reactive(target: any) {
   if (!isObject(target)) {
@@ -21,17 +20,7 @@ export function reactive(target: any) {
   if (existProxy) return existProxy 
 
   // Proxy 配合 Reflect 使用
-  const proxy = new Proxy(target, {
-    set(target, key, value, receiver) {
-      return Reflect.set(target, key, value, receiver)
-    },
-    get(target, key, receiver) {
-      if (key === ReactiveFlags.IS_REACTIVE) {
-        return true;
-      }
-      return Reflect.get(target, key, receiver)
-    },
-  });
+  const proxy = new Proxy(target, mutableHandlers);
 
   // 缓存代理
   reactiveMap.set(target, proxy);
