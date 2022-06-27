@@ -9,6 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lewinloo/vue3_source_code.git"
+  },
   "devDependencies": {
     "esbuild": "^0.14.47",
     "minimist": "^1.2.6",
