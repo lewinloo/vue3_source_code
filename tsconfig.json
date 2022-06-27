@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@vue/*": ["packages/*/src"]
+    },
+    "strict": true,
+    "target": "ES2016",
+    "module": "ESNext",
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "lib": ["DOM", "ESNext"]
+  },
+}
