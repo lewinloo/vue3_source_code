@@ -1,4 +1,4 @@
-import { activeEffect } from "./effect";
+import { activeEffect, track } from "./effect";
 
 export const enum ReactiveFlags {
   IS_REACTIVE = '__v_isReactive'
@@ -12,6 +12,9 @@ export const mutableHandlers = {
     if (key === ReactiveFlags.IS_REACTIVE) {
       return true;
     }
+    
+    track(target, 'get', key);
+
     return Reflect.get(target, key, receiver)
   },
 }
